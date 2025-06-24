@@ -2,6 +2,7 @@ const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
 require('dotenv').config();
+const path = require('path');
 
 const app = express();
 app.use(cors());
@@ -78,13 +79,7 @@ app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
 
-const path = require('path');
 app.use(express.static(path.join(__dirname, '../dist')));
-app.get('*', (req, res) => {
-  try {
-    res.sendFile(path.join(__dirname, '../dist/index.html'));
-  } catch (error) {
-    console.error('Failed to serve index.html:', error);
-    res.status(500).send('Server error');
-  }
+app.get('*', function (req, res) {
+  res.sendFile(path.resolve(__dirname, '../dist/index.html'));
 });

@@ -64,6 +64,13 @@ export default function App() {
       if (!res.ok) throw new Error('Failed to fetch comment data');
       const data = await res.json();
       setWords(data);
+      setTimeout(() => {
+        const canvas = canvasRef.current;
+        const link = document.createElement('a');
+        link.download = 'comment-cloud.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      }, 500); // wait a bit for drawing to finish
     } catch (err) {
       console.error(err);
       alert('Error fetching comments. Please try again.');

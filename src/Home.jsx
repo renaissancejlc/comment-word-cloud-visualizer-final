@@ -44,7 +44,7 @@ export default function Home() {
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
 
-      const colors = ['#000000', '#111111', '#FF0000', '#B91C1C', '#F5F5F5'];
+      const colors = ['#000000', '#111111', '#FF0000', '#B91C1C', '#333333'];
 
       words.forEach((word, index) => {
         ctx.save();

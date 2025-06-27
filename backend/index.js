@@ -8,6 +8,7 @@ const app = express();
 app.use(cors());
 const PORT = process.env.PORT || 4000;
 
+// === API Route ===
 app.get('/api/comments', async (req, res) => {
   const { videoId } = req.query;
   const apiKey = process.env.YOUTUBE_API_KEY;
@@ -46,7 +47,7 @@ app.get('/api/comments', async (req, res) => {
     const wordCounts = countWords(comments.join(' '));
     const wordCloudData = Object.entries(wordCounts)
       .map(([word, value]) => ({ text: word, value }))
-      .slice(0, 50); // limit to top 50
+      .slice(0, 50); // Top 50 words
 
     res.json(wordCloudData);
   } catch (err) {
@@ -62,8 +63,8 @@ function countWords(text) {
     'about', 'who', 'has', 'its', 'would', 'from', 'they', 'one', 'when', 'there'
   ]);
   const words = text
-    .replace(/(<([^>]+)>)/gi, '') // remove HTML tags
-    .replace(/[^\w\s]/g, '') // remove punctuation
+    .replace(/(<([^>]+)>)/gi, '') // Remove HTML tags
+    .replace(/[^\w\s]/g, '') // Remove punctuation
     .toLowerCase()
     .split(/\s+/);
 
@@ -75,12 +76,16 @@ function countWords(text) {
   }, {});
 }
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
-
+// === Serve Frontend Build ===
 const distPath = path.resolve(__dirname, '../dist');
 app.use(express.static(distPath));
-app.get('*', function (req, res) {
+
+// Handle all other routes → serve index.html
+app.get('*', (req, res) => {
   res.sendFile(path.join(distPath, 'index.html'));
+});
+
+// === Start Server ===
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
 });

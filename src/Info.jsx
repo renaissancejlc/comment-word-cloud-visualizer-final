@@ -111,7 +111,7 @@ export default function Info() {
           I'm a software engineer who loves building fun, useful, and open tools like this one. I freelance, create side projects, and enthusiastically welcome input, feedback, and feature suggestions.
         </p>
         <p className="mb-4">
-          FreePrompt exists because we believe helpful tools should be accessible to everyone. No paywalls, no hassle, just free and functional.
+          YouTube Comment Cloud exists to help users visualize viewer sentiment in a fun, interactive way. No paywalls, no hassle—just free and functional insight from YouTube audiences.
         </p>
         <h2 className="text-3xl font-bold mb-4 uppercase border-b-2 border-black pb-2">Support This Project</h2>
         <p>

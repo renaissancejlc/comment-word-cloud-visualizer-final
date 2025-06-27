@@ -109,6 +109,11 @@ export default function Home() {
           placeholder="PASTE YOUTUBE VIDEO URL…"
           value={url}
           onChange={(e) => setUrl(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              handleGenerate();
+            }
+          }}
           className="flex-grow text-lg bg-transparent border-2 border-black focus:outline-none focus:border-red-600 px-4 py-2 placeholder-black font-mono tracking-wide uppercase"
         />
         <button
